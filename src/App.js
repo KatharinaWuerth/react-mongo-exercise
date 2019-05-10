@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getCards } from './services';
+import CardList from './CardList';
 
 export default class App extends Component {
   state = {
@@ -18,11 +19,7 @@ export default class App extends Component {
     return (
       <main>
         <h1>Cards</h1>
-        <ul>
-          {cards.map(card => (
-            <li key={card._id}>{card.title}</li>
-          ))}
-        </ul>
+        <CardList cards={cards} />
       </main>
     );
   }

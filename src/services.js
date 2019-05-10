@@ -1,3 +1,3 @@
 export function getCards() {
-  fetch('/cards').then(res => res.json());
+  return fetch('/cards').then(res => res.json());
 }
