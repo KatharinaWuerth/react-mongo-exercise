@@ -5,7 +5,7 @@ export default function Cardlist(props) {
   const { cards, onClickCardList } = props;
 
   return (
-    <ul>
+    <ul style={{ listStyle: 'none', padding: '0' }}>
       {cards.map(card => (
         <Card
           card={card}

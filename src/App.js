@@ -30,7 +30,6 @@ export default class App extends Component {
   }
 
   handleOnClick = card => {
-    console.log('handleonclick');
     card.isBookmarked = !card.isBookmarked;
     const index = this.state.cards.indexOf(card);
     patchCard(card)

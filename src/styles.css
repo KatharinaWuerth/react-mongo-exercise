@@ -9,3 +9,8 @@ body {
   color: darkslategray;
   background: papayawhip;
 }
+
+main {
+  display: grid;
+  align-items: center;
+}

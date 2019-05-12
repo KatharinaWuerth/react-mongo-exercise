@@ -12,20 +12,40 @@ export default function Form({ onCreate }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form
+      style={{ display: 'flex', flexDirection: 'column' }}
+      onSubmit={handleSubmit}
+    >
+      {'Title'}
       <label>
-        {'Title'}
-        <input type="text" name="title" placeholder="Title" />
+        <input
+          style={{ margin: '10px' }}
+          type="text"
+          name="title"
+          placeholder="Title"
+        />
       </label>
       {'Description'}
       <label>
-        <input type="text" name="description" placeholder="Description" />
+        <input
+          style={{ margin: '10px' }}
+          type="text"
+          name="description"
+          placeholder="Description"
+        />
       </label>
       {'Tags'}
       <label>
-        <input type="text" name="tags" placeholder="tag1, tag2, tag3" />
+        <input
+          style={{ margin: '10px' }}
+          type="text"
+          name="tags"
+          placeholder="tag1, tag2, tag3"
+        />
       </label>
-      <button>Submit</button>
+      <button style={{ border: 'solid 0.3px', marginBottom: '10px' }}>
+        Submit
+      </button>
     </form>
   );
 }
