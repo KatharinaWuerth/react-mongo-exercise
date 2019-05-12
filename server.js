@@ -15,3 +15,10 @@ app.post('/cards', (req, res) => {
     .catch(err => res.status(500).json(err));
   console.log('Successful User Update');
 });
+
+app.patch('/cards/:id', (req, res) => {
+  const { id } = req.params;
+  Card.findByIdAndUpdate(id, req.body, { new: true })
+    .then(data => res.json(data))
+    .catch(err => res.json({ errors: [err] }));
+});
