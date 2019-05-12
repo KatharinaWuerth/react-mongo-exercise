@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
-import { getCards, postCard } from './services';
+import { getCards, postCard, setLocal, getLocal } from './services';
 import CardList from './CardList';
 import Form from './Form';
 
+//gebe den key 'cards' bei getLocal hinzu, damit er weiß, was genau er von dem localStorage holen soll
 export default class App extends Component {
   state = {
-    cards: []
+    cards: getLocal('cards') || []
   };
 
+  //muss setLocal mit setState in eine {} schreiben, da setState zu langsam ist (asynchron)
+  //und setLocal sonst schon vorher auf den leeren Array zugreifen würde
   componentDidMount() {
     getCards()
-      .then(data => this.setState({ cards: data }))
+      .then(data => {
+        this.setState({ cards: data });
+        setLocal('cards', this.state.cards);
+      })
       .catch(error => console.log(error));
   }
 
   handleCreate(card) {
     postCard(card)
-      .then(card => this.setState({ cards: [...this.state.cards, card] }))
+      .then(card => {
+        this.setState({ cards: [...this.state.cards, card] });
+        setLocal('cards', this.state.cards);
+      })
       .catch(err => console.log(err));
   }
 
