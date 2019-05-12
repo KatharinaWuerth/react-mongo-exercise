@@ -6,7 +6,7 @@ const cardSchema = new mongoose.Schema({
     required: true,
     get: value => value.toUpperCase()
   },
-  decription: {
+  description: {
     type: String
   },
   tags: {

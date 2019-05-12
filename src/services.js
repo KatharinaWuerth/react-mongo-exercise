@@ -23,3 +23,13 @@ export function getLocal(name) {
     console.log(error);
   }
 }
+
+export function patchCard(card) {
+  return fetch(`/cards/${card._id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(card)
+  }).then(res => res.json());
+}

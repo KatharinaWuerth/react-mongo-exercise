@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getCards, postCard, setLocal, getLocal } from './services';
+import { getCards, postCard, setLocal, getLocal, patchCard } from './services';
 import CardList from './CardList';
 import Form from './Form';
 
@@ -29,6 +29,23 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
+  handleOnClick = card => {
+    console.log('handleonclick');
+    card.isBookmarked = !card.isBookmarked;
+    const index = this.state.cards.indexOf(card);
+    patchCard(card)
+      .then(card => {
+        this.setState({
+          cards: [
+            ...this.state.cards.slice(0, index),
+            card,
+            ...this.state.cards.slice(index + 1)
+          ]
+        });
+      })
+      .catch(err => console.log(err));
+  };
+
   render() {
     const { cards } = this.state;
 
@@ -36,7 +53,7 @@ export default class App extends Component {
       <main>
         <h1>Cards</h1>
         <Form onCreate={card => this.handleCreate(card)} />
-        <CardList cards={cards} />
+        <CardList cards={cards} onClickCardList={this.handleOnClick} />
       </main>
     );
   }

@@ -1,5 +1,5 @@
 import React from 'react';
 
-export default function Tag({ tags }) {
-  return <p>{tags.join(', ')}</p>;
+export default function Tag({ tag }) {
+  return <p>{tag}</p>;
 }
