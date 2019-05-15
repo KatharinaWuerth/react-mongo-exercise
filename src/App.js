@@ -29,6 +29,16 @@ export default class App extends Component {
       .catch(err => console.log(err));
   }
 
+  // besser das hier, als wie bei mir das setLocal in handleCreate & componentDidMoundt mit reinschreiben
+  //componentDidUpdate(prevProps, prevState) {
+  //  const {} = this.state;
+  //  if(prevState.cards !== cards) {
+  //  setLocal('cards', cards)
+  //}
+  //}
+
+  // hier arrow function für das binding
+  //bessere Namen für die Funtionen ausdenken, die auch wirklich das ausdrücken, was passiert
   handleOnClick = card => {
     card.isBookmarked = !card.isBookmarked;
     const index = this.state.cards.indexOf(card);
@@ -48,6 +58,7 @@ export default class App extends Component {
   render() {
     const { cards } = this.state;
 
+    //bräuchte bei onCreate= danach keien arrow function: this.handleCreate --> ich ich in der Form ja schon alles mitgegeben habe
     return (
       <main>
         <h1>Cards</h1>

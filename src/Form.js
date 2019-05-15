@@ -6,7 +6,10 @@ export default function Form({ onCreate }) {
     const form = event.target;
     const title = form.title.value;
     const description = form.description.value;
-    const tags = form.tags.value.split(', ');
+    const tags = form.tags.value
+      .split(', ')
+      .map(value => value.trim())
+      .filter(value => value); //Filter schmeißt alles raus, was false ist; leerer String wäre falsy und würde damit nicht angezeigt werden // geht auch: .filter(Boolean)
     const card = { title, description, tags };
     onCreate(card);
   }

@@ -9,11 +9,16 @@ app.get('/cards', (req, res) => {
     .catch(err => res.json(err));
 });
 
+//then. --> erstellter Post wird nach erfolgreichem Erstellen zurück gegeben
+// console.log mittels {} an das than binden, da promise asynchrone --> würde sondt immer die console.log bekommen,
+//auch wenn der Prozess nicht erfolgreich war
 app.post('/cards', (req, res) => {
   Card.create(req.body)
-    .then(card => res.status(201).json(card))
+    .then(card => {
+      res.status(201).json(card);
+      console.log('Successful User Update');
+    })
     .catch(err => res.status(500).json(err));
-  console.log('Successful User Update');
 });
 
 app.patch('/cards/:id', (req, res) => {
